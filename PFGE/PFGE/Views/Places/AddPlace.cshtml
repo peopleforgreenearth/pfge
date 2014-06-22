@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "AddPlace";
+    Layout = "~/Views/_MainPage.cshtml";
+}
+
+
+@section headcontent {
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAZlUapLzy4LDEJd5DLoUx_hRcFAkyBlLd0rqeE4jHyIqSBykbfRSVAqQsrlJ2rNZ4gNMdx6rIcU0hIQ"
+    type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    var map = null;
+    var geocoder = null;
+
+    function initialize() {
+        alert("test");
+        if (GBrowserIsCompatible()) {
+
+            map = new GMap2(document.getElementById("map_canvas"));
+
+            map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+            geocoder = new GClientGeocoder();
+        }
+    }
+
+
+    function showAddr() {
+        alert("show addr called");
+
+        showAddress(document.getElementById("AddressTextBox").value)
+    }
+    function showAddress(address) {
+        alert("addr calling");
+        if (geocoder) {
+            geocoder.getLatLng(
+              address,
+              function (point) {
+                  if (!point) {
+                      alert(address + " not found");
+                  } else {
+                      map.clearOverlays();
+                      map.setCenter(point, 13);
+                      var marker = new GMarker(point, { draggable: true });
+
+                      map.addOverlay(marker);
+                      GEvent.addListener(marker, "dragstart", function () {
+
+                          map.closeInfoWindow();
+                      });
+
+                      GEvent.addListener(marker, "dragend", function (point, placemark) {
+                          //var point1=GMarker.getLatLng()
+
+                          document.getElementById("LatitudeTextBox").value = point.y;
+                          document.getElementById("LongitudeTextBox").value = point.x;
+
+
+                          marker.openInfoWindowHtml("<br>Long: " + point.x + "<br>Lati:  " + point.y);
+                          // marker.openInfoWindowHtml(address );
+                      });
+                      //map.addOverlay(marker);
+
+                      document.getElementById("LatitudeTextBox").value = point.y;
+                      document.getElementById("LongitudeTextBox").value = point.x;
+                      marker.openInfoWindowHtml(address + "<br>Long: " + point.x + "<br>Lati:  " + point.y);
+                  }
+              }
+            );
+
+
+        }
+        alert("addr called");
+    }
+    $(document).ready(function () {
+        alert("ready called");
+        // Handler for .ready() called.
+        initialize();
+    });
+
+</script>
+}
+
+
+<p>Heading:<input id="txtHeading" maxlength="60" /></p>
+
+<p>
+    City:<input id="City" type="text" />
+</p>
+
+<p>
+    Address:<input id="AddressTextBox" maxlength="120" type="text" />
+
+    <input type="button" id="Button1" onclick="showAddr(); return false"
+        value="Search" />
+</p>
+<p>
+    <div id="map_canvas" style="width: 500px; height: 300px">
+    </div>
+</p>
+
+<p>
+    Latitude:<input id="LatitudeTextBox" type="text" />
+</p>
+
+<p>
+    Longitude:<input id="LongitudeTextBox" type="text" />
+</p>
+
+<input id="cmdSubmit" type="button" value="Submit" />
+&nbsp;
+  <input id="cmdCancel" value="Cancel" type="button" />
+
+<br />

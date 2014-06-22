@@ -15,6 +15,12 @@ namespace PFGE.Controllers
             return View();
         }
 
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
+
         //
         // GET: /Home/Details/5
         public ActionResult Details(int id)

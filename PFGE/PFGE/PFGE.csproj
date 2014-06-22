@@ -103,7 +103,15 @@
     <Content Include="bootstrap-free-template-resturant.png" />
     <Content Include="contact.html" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
+    <Content Include="index1.html" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="themes\assets\css\carousel.css" />
     <Content Include="themes\assets\css\docs.css" />
     <Content Include="themes\assets\css\pygments-manni.css" />
@@ -144,6 +152,11 @@
     <Content Include="themes\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="themes\dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="themes\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Views\_MainPageHome.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Places\AddPlace.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -165,6 +178,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlacesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
