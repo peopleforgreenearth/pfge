@@ -1,0 +1,113 @@
+﻿@model IEnumerable<PFGE.Models.Place>
+@{
+    ViewBag.Title = "ViewPlaces";
+    //Layout = "~/Views/_MainPage.cshtml";
+}
+
+@*@section headcontent {*@
+        
+    <title>Marker animations with <code>setTimeout()</code></title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+        // If you're adding a number of markers, you may want to
+        // drop them on the map consecutively rather than all at once.
+        // This example shows how to use setTimeout() to space
+        // your markers' animation.
+
+        var berlin = new google.maps.LatLng(30.7333148,76.7794179);
+
+        var neighborhoods = [
+            @{
+                foreach (var lst in Model.ToList())
+                {
+                   <text> new google.maps.LatLng( @lst.Latitude.ToString(),@lst.Longitude.ToString() ) @{if (!(lst.PlaceId == Model.Last().PlaceId))
+                                                                                                        {<text>,</text>}
+                                                                                                        }
+                    </text>
+                }
+                
+                }      
+        
+        ];
+
+        var markers = [];
+        var iterator = 0;
+
+        var map;
+
+        function initialize() {
+            var mapOptions = {
+                zoom: 12,
+                center: berlin
+            };
+
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+        }
+
+        function drop() {
+            for (var i = 0; i < neighborhoods.length; i++) {
+                setTimeout(function () {
+                    addMarker(i);
+                }, i * 200);
+            }
+        }
+
+        function addMarker(i) {
+
+            var mymarker = new google.maps.Marker({
+                position: neighborhoods[iterator],
+                map: map,
+                draggable: false,
+                animation: google.maps.Animation.DROP
+            })
+
+            //marker.addListener('click', function () {
+            //   alert("hello");
+            //});
+
+            google.maps.event.addListener(mymarker, 'click', function () {
+                alert("hello : " + i);
+            });
+
+            //mymarker.openInfoWindowHtml("hello : " + iterator);
+
+            //google.maps.event.addListener(mymarker, 'click', function () {
+            //    map.setZoom(8);
+            //    map.setCenter(marker.getPosition());
+            //});
+
+            markers.push(mymarker);
+            iterator++;
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+@*}*@
+
+
+<h2>ViewPlaces</h2>
+
+<div id="panel" style="margin-left: -52px">
+      <button id="drop" onclick="drop()">Drop Markers</button>
+     </div>
+TEST TXT
+    <div id="map-canvas"></div>

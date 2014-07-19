@@ -37,7 +37,17 @@ namespace PFGE.Controllers
             db.Places.Add(place);
             db.SaveChanges();
             return View();
-        } 
+        }
+
+        public ActionResult ViewPlaces()
+        {
+            PFGEEntities db = new PFGEEntities();
+
+            var list = from lst in db.Places select lst;
+
+
+            return View(list);
+        }
 
 	}
 }
