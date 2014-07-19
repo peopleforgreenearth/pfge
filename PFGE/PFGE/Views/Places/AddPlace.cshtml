@@ -1,0 +1,179 @@
+﻿@model PFGE.Models.Place
+
+@{
+    ViewBag.Title = "AddPlace";
+    Layout = "~/Views/_MainPage.cshtml";
+}
+
+
+@section headcontent {
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"
+        type="text/javascript"></script>
+}
+
+<script>
+    var myCenter = new google.maps.LatLng(51.508742, -0.120850);
+    var marker;
+    var map = null;
+    var geocoder = null;
+
+    function initialize() {
+        //geocoder = new google.maps.Geocoder();
+
+        //var mapProp = {
+        //    center: myCenter,
+        //    zoom: 15,
+        //    mapTypeId: google.maps.MapTypeId.ROADMAP
+        //};
+        //var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        //marker = new google.maps.Marker({
+        //    position: myCenter,
+        //    draggable: true
+        //    // icon:'themes/assets/images/nepali-momo.png',
+        //    //animation: google.maps.Animation.BOUNCE
+        //});
+
+        //marker.setMap(map);
+
+        //// Info open
+        //var infowindow = new google.maps.InfoWindow({
+        //    content: "Hello World!"
+        //});
+
+        //google.maps.event.addListener(marker, 'click', function () {
+        //    //infowindow.open(map, marker);
+        //});
+    }
+    //google.maps.event.addDomListener(window, 'load', initialize);
+
+    function showAddr() {
+        //alert("show addr called");
+        showAddress(document.getElementById("Address").value)
+    }
+
+    function showAddress(address) {
+        //alert("addr calling");
+
+        geocoder = new google.maps.Geocoder();
+
+        var mapProp = {
+            center: myCenter,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                //alert("ok");
+                map.setCenter(results[0].geometry.location);
+                //var marker = new google.maps.Marker({
+                //    map: map,
+                //    position: results[0].geometry.location
+                //});
+                // Place a draggable marker on the map
+                var marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map,
+                    draggable: true,
+                    title: "Drag me!"
+                });
+
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    //placeMarker(event.latLng);
+                    document.getElementById("Latitude").value = event.latLng.lat();
+                    document.getElementById("Longitude").value = event.latLng.lng();
+                });
+
+                document.getElementById("Latitude").value = results[0].geometry.location.lat();
+                document.getElementById("Longitude").value = results[0].geometry.location.lng();
+
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+
+                
+        //if (geocoder) {
+        //    geocoder.getLatLng(
+        //      address,
+        //      function (point) {
+        //          if (!point) {
+        //              alert(address + " not found");
+        //          } else {
+        //              //map.clearOverlays();
+        //              //map.setCenter(point, 13);
+        //              //var marker = new GMarker(point, { draggable: true });
+
+        //              marker = new google.maps.Marker({
+        //                  position: myCenter,
+        //                  draggable: true
+        //                  // icon:'themes/assets/images/nepali-momo.png',
+        //                  //animation: google.maps.Animation.BOUNCE
+        //              });
+
+
+        //              marker.setMap(map);
+        //              ////map.addOverlay(marker);
+        //              //GEvent.addListener(marker, "dragstart", function () {
+
+        //              //    map.closeInfoWindow();
+        //              //});
+
+        //              google.maps.event.addListener(marker, 'click', function () {
+        //                  map.setZoom(8);
+        //                  map.setCenter(marker.getPosition());
+        //              });
+
+
+        //              google.maps.event.addListener(marker, "dragend", function (point, placemark) {
+        //                  //var point1=GMarker.getLatLng()
+
+        //                  document.getElementById("LatitudeTextBox").value = point.y;
+        //                  document.getElementById("LongitudeTextBox").value = point.x;
+
+
+        //                  marker.openInfoWindowHtml("<br>Long: " + point.x + "<br>Lati:  " + point.y);
+        //                  // marker.openInfoWindowHtml(address );
+        //              });
+        //              //map.addOverlay(marker);
+
+        //              document.getElementById("LatitudeTextBox").value = point.y;
+        //              document.getElementById("LongitudeTextBox").value = point.x;
+        //              marker.openInfoWindowHtml(address + "<br>Long: " + point.x + "<br>Lati:  " + point.y);
+        //          }
+        //      }
+        //    );
+
+
+        //}
+        alert("Address found");
+        //marker.setMap(map);
+        //map.setCenter(marker.getPosition());
+    }
+
+
+</script>
+
+@using (Html.BeginForm()) {
+    <p>Heading:  @Html.TextBoxFor(model => model.Heading)</p>
+    <p>
+        City: @Html.TextBoxFor(model => model.City)
+    </p>
+    <p>
+        Address: @Html.TextBoxFor(model => model.Address) <input type="button" id="Button1" onclick="showAddr(); return false"
+            value="Search" />
+    </p>
+    <p>
+        <div id="googleMap" style="height: 300px;"></div>
+    </p>
+    <p>
+        Latitude: @Html.TextBoxFor(model => model.Latitude)
+    </p>
+    <p>
+        Longitude: @Html.TextBoxFor(model => model.Longitude)
+    </p>
+    <input id="cmdSubmit" type="submit" value="Submit" />   <input id="cmdCancel" value="Cancel" type="button" />
+    <br />
+
+}
