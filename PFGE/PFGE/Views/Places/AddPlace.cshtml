@@ -9,6 +9,15 @@
 @section headcontent {
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"
         type="text/javascript"></script>
+     <link href="~/Content/fileuploader/fileuploader.css" rel="stylesheet">
+     <script src="~/Scripts/fileuploader.js"></script>
+   @* //register CSS and JS
+    
+    
+
+    //ex. ['jpg', 'jpeg', 'png', 'gif'] or []
+    //var allowedFileExtensions = string.Join(", ", attribute.AllowedFileExtensions.Select(x => "'" + x.Trim() + "'").ToList());*@
+
 }
 
 <script>
@@ -155,7 +164,8 @@
 
 </script>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     <p>Heading:  @Html.TextBoxFor(model => model.Heading)</p>
     <p>
         City: @Html.TextBoxFor(model => model.City)
@@ -175,5 +185,35 @@
     </p>
     <input id="cmdSubmit" type="submit" value="Submit" />   <input id="cmdCancel" value="Cancel" type="button" />
     <br />
-
+     <input id="PrintItemUpload" name="PrintItemUpload" type="hidden" />
 }
+
+  @*@Html.Action(storeLocation + "checkout/ShoppingCartFiles/"+ item.Id);
+                            @Html.Action("ShoppingCartFiles", "Places", new { id = 1 })   *@                         
+                           
+                            <div id="PrintItemUploader">
+                            
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    var PrintItemUploader = new qq.FileUploader({
+                                        element: document.getElementById('PrintItemUploader'),
+                                        action: '/Places/UploadFile',
+                                        onComplete: function (id, fileName, responseJSON) {
+                                            $("#PrintItemUpload").val(responseJSON.downloadGuid);
+                                            if (responseJSON.message) {
+                                                alert(responseJSON.message);
+                                                //window.location.href = "@Request.RawUrl";
+                                        }
+                                    },
+                                        //allowedExtensions:'.txt',
+                                        strings: {
+                                            upload: "upload",
+                                            drop: "drop",
+                                            cancel: "cancel",
+                                            failed: "failed"
+                                        }
+                                    });
+                                });
+                        </script>
+                            @*<span class="product-unit-price">@item.UnitPrice</span>*@

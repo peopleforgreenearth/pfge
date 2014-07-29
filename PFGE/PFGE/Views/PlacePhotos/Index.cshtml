@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PFGE.Models.PlacePhoto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_MainPage.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PlaceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlaceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PlacePhotoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlacePhotoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PlacePhotoId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -22,5 +22,47 @@ namespace PFGE.Models
         public double Latitude { get; set; }
         [Required]
         public double Longitude { get; set; }
+
+        public string UserID { get; set; }
     }
+
+    public class PlacePhoto
+    {
+        [Key]
+        public int PlacePhotoId { get; set; }
+        [Required]
+        public int PlaceId { get; set; }
+        [Required]
+        public string PhotoName { get; set; }
+        [Required]
+        public string PhotoDescription { get; set; }
+    }
+
+    [Bind(Exclude = "EventId")]
+    public class Event
+    {
+        [Key]
+        public int EventId { get; set; }
+        [Required]
+        public string EventName { get; set; }
+        [Required]
+        public DateTime EventDate { get; set; }
+        [Required]
+        public string EventDescription { get; set; }
+    }
+
+    [Bind(Exclude = "EventPhotoId")]
+    public class EventPhoto
+    {
+        [Key]
+        public int EventPhotoId { get; set; }
+        [Required]
+        public int EventId { get; set; }
+        [Required]
+        public string PhotoName { get; set; }
+        [Required]
+        public string PhotoDescription { get; set; }
+    }
+
+
 }
