@@ -59,3 +59,4 @@ E:\PeopleForGreenEarth\pfge\PFGE\PFGE\bin\System.Web.Extensions.dll
 E:\PeopleForGreenEarth\pfge\PFGE\PFGE\bin\System.Web.Services.dll
 E:\PeopleForGreenEarth\pfge\PFGE\PFGE\bin\System.Xml.dll
 E:\PeopleForGreenEarth\pfge\PFGE\PFGE\bin\System.Xml.Linq.dll
+E:\PeopleForGreenEarth\pfge\PFGE\PFGE\obj\Debug\PFGE.csprojResolveAssemblyReference.cache
