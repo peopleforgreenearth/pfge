@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +12,8 @@ namespace PFGE
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<PFGE.Models.PFGEEntities>());
+
            // System.Data.Entity.Database.SetInitializer(new MvcMusicStore.Models.SampleData());
 
             AreaRegistration.RegisterAllAreas();
