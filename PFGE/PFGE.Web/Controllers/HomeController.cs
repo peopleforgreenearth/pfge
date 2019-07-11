@@ -33,7 +33,7 @@ namespace PFGE.Web.Controllers
             place.City = "test";
             place.Latitude  = 0;
             place.Longitude = 1;
-            place.PlaceId = 10;
+            //place.PlaceId = 10;
             _placeService.AddPlace(place);
 
             ViewData["Message"] = "Your application description page.";
