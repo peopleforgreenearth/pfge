@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Add Images";
+    //Layout = "~/Views/_MainPage.cshtml";
+}
+
+@section Scripts {
+     <link href="~/Content/fileuploader/fileuploader.css" rel="stylesheet">
+     <script src="~/Scripts/fileuploader.js"></script>
+    
+<script type="text/javascript">
+    $(function () {
+        var PrintItemUploader = new qq.FileUploader({
+            element: document.getElementById('PrintItemUploader'),
+            action: '/Places/UploadFile',
+            onComplete: function (id, fileName, responseJSON) {
+                $("#PrintItemUpload").val(responseJSON.downloadGuid);
+                if (responseJSON.message) {
+                    alert(responseJSON.message);
+                    //window.location.href = "@Request.RawUrl";
+            }
+        },
+            //allowedExtensions:'.txt',
+            strings: {
+                upload: "upload",
+                drop: "drop",
+                cancel: "cancel",
+                failed: "failed"
+            }
+        });
+    });
+</script>
+}
+
+
+<div >
+    <div class="row">
+        <div class="col-md-12">
+        <h2>Add Images</h2>
+        <div class="well">              
+            <div id="PrintItemUploader">
+                            
+            </div>       
+        </div>
+    </div>     
+
+    </div>
+</div>
+

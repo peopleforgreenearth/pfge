@@ -19,6 +19,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,20 +41,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServerCompact">
       <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.1-beta1\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.Entity">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -151,15 +148,15 @@
     <Content Include="HtmlPage2.html" />
     <Content Include="index1.html" />
     <None Include="Properties\PublishProfiles\localcopy.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.bak.js" />
     <Content Include="Scripts\fileuploader.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.bak.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.bak.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.bak.js" />
+    <Content Include="Scripts\jquery.validate.bak.js" />
+    <Content Include="Scripts\jquery.validate.min.bak.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bak.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.bak.js" />
     <Content Include="themes\assets\css\carousel.css" />
     <Content Include="themes\assets\css\docs.css" />
     <Content Include="themes\assets\css\pygments-manni.css" />
@@ -189,21 +186,65 @@
     <Content Include="themes\assets\js\less.js" />
     <Content Include="themes\assets\js\raw-files.js" />
     <Content Include="themes\assets\js\uglify.js" />
+    <Content Include="themes\css\site.css" />
+    <Content Include="themes\css\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
     <Content Include="themes\dist\css\bootstrap-theme.min.css" />
     <Content Include="themes\dist\css\bootstrap.min.css" />
     <Content Include="themes\dist\js\bootstrap.min.js" />
+    <Content Include="themes\favicon.ico" />
+    <Content Include="themes\images\banner1.svg" />
+    <Content Include="themes\images\banner2.svg" />
+    <Content Include="themes\images\banner3.svg" />
+    <Content Include="themes\images\banner4.svg" />
+    <Content Include="themes\js\site.js" />
+    <Content Include="themes\js\site.min.js">
+      <DependentUpon>site.js</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="themes\lib\bootstrap\dist\css\bootstrap-theme.min.css">
+      <DependentUpon>bootstrap-theme.css</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="themes\lib\bootstrap\dist\css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="themes\lib\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="themes\lib\bootstrap\dist\js\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\bootstrap\dist\js\npm.js" />
+    <Content Include="themes\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <Content Include="themes\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js">
+      <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\jquery-validation\dist\additional-methods.js" />
+    <Content Include="themes\lib\jquery-validation\dist\additional-methods.min.js">
+      <DependentUpon>additional-methods.js</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="themes\lib\jquery-validation\dist\jquery.validate.min.js">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\jquery\dist\jquery.js" />
+    <Content Include="themes\lib\jquery\dist\jquery.min.js">
+      <DependentUpon>jquery.js</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\jquery\LICENSE.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\_MainPage.cshtml" />
+    <Content Include="Views\_MainPage.bak.cshtml" />
     <Content Include="themes\dist\css\bootstrap-theme.cs1s.map" />
     <Content Include="themes\dist\css\bootstrap.css1.map" />
     <Content Include="themes\dist\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="themes\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="themes\dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="themes\dist\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Views\_MainPageHome.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\_MainPageHome.bak.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.bak.map" />
     <Content Include="Views\Home\Indexold.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Places\AddPlace.cshtml" />
@@ -211,7 +252,7 @@
     <Content Include="ViewPage1.cshtml" />
     <Content Include="Views\Home\index1.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index.bak.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
     <Content Include="Views\Events\Delete.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
@@ -221,9 +262,11 @@
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.bak.cshtml" />
+    <Content Include="Views\Shared\Error.bak.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Shared\_Layout..bakcshtml" />
     <Content Include="Views\EventPhotos\Create.cshtml" />
     <Content Include="Views\EventPhotos\Delete.cshtml" />
     <Content Include="Views\EventPhotos\Details.cshtml" />
@@ -234,6 +277,38 @@
     <Content Include="Views\PlacePhotos\Details.cshtml" />
     <Content Include="Views\PlacePhotos\Edit.cshtml" />
     <Content Include="Views\PlacePhotos\Index.cshtml" />
+    <Content Include="Views\Places\AddImages.cshtml" />
+    <Content Include="themes\lib\bootstrap\dist\css\bootstrap.css.map">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\bootstrap\dist\css\bootstrap.min.css.map">
+      <DependentUpon>bootstrap.min.css</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\bootstrap\dist\css\bootstrap-theme.css.map">
+      <DependentUpon>bootstrap-theme.css</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\bootstrap\dist\css\bootstrap-theme.min.css.map">
+      <DependentUpon>bootstrap-theme.min.css</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="themes\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="themes\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="themes\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="themes\lib\bootstrap\.bower.json" />
+    <Content Include="themes\lib\bootstrap\LICENSE" />
+    <Content Include="themes\lib\jquery\dist\jquery.min.map">
+      <DependentUpon>jquery.min.js</DependentUpon>
+    </Content>
+    <Content Include="themes\lib\jquery\.bower.json" />
+    <Content Include="themes\lib\jquery-validation\.bower.json" />
+    <Content Include="themes\lib\jquery-validation\LICENSE.md" />
+    <Content Include="themes\lib\jquery-validation-unobtrusive\.bower.json" />
+    <Content Include="Views\Shared\_ViewImports.cshtml" />
+    <Content Include="Views\Shared\_ViewStart.cshtml" />
+    <Content Include="Views\_Layout.cshtml" />
+    <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <Content Include="Views\_ViewImports.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

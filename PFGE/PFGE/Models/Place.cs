@@ -34,35 +34,35 @@ namespace PFGE.Models
         public int PlaceId { get; set; }
         [Required]
         public string PhotoName { get; set; }
-        [Required]
+        //[Required]
         public string PhotoDescription { get; set; }
     }
 
-    [Bind(Exclude = "EventId")]
-    public class Event
-    {
-        [Key]
-        public int EventId { get; set; }
-        [Required]
-        public string EventName { get; set; }
-        [Required]
-        public DateTime EventDate { get; set; }
-        [Required]
-        public string EventDescription { get; set; }
-    }
+    //[Bind(Exclude = "EventId")]
+    //public class Event
+    //{
+    //    [Key]
+    //    public int EventId { get; set; }
+    //    [Required]
+    //    public string EventName { get; set; }
+    //    [Required]
+    //    public DateTime EventDate { get; set; }
+    //    [Required]
+    //    public string EventDescription { get; set; }
+    //}
 
-    [Bind(Exclude = "EventPhotoId")]
-    public class EventPhoto
-    {
-        [Key]
-        public int EventPhotoId { get; set; }
-        [Required]
-        public int EventId { get; set; }
-        [Required]
-        public string PhotoName { get; set; }
-        [Required]
-        public string PhotoDescription { get; set; }
-    }
+    //[Bind(Exclude = "EventPhotoId")]
+    //public class EventPhoto
+    //{
+    //    [Key]
+    //    public int EventPhotoId { get; set; }
+    //    [Required]
+    //    public int EventId { get; set; }
+    //    [Required]
+    //    public string PhotoName { get; set; }
+    //    [Required]
+    //    public string PhotoDescription { get; set; }
+    //}
 
 
 }

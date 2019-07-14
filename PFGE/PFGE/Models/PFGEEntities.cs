@@ -6,8 +6,8 @@ namespace PFGE.Models
     {
         public DbSet<Place> Places { get; set; }
         public DbSet<PlacePhoto> PlacePhotos { get; set; }
-        public DbSet<Event> Events { get; set; }
-        public DbSet<EventPhoto> EventPhotos { get; set; }
+       // public DbSet<Event> Events { get; set; }
+       // public DbSet<EventPhoto> EventPhotos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

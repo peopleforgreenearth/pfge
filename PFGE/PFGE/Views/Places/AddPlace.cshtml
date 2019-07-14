@@ -1,16 +1,15 @@
 ﻿@model PFGE.Models.Place
 
 @{
-    ViewBag.Title = "AddPlace";
-    Layout = "~/Views/_MainPage.cshtml";
+    ViewBag.Title = "Add Place";
+    //Layout = "~/Views/_MainPage.cshtml";
 }
 
 
-@section headcontent {
+@section Scripts {
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"
         type="text/javascript"></script>
-     <link href="~/Content/fileuploader/fileuploader.css" rel="stylesheet">
-     <script src="~/Scripts/fileuploader.js"></script>
+
    @* //register CSS and JS
     
     
@@ -164,56 +163,44 @@
 
 </script>
 
-@using (Html.BeginForm())
-{
-    <p>Heading:  @Html.TextBoxFor(model => model.Heading)</p>
-    <p>
-        City: @Html.TextBoxFor(model => model.City)
-    </p>
-    <p>
-        Address: @Html.TextBoxFor(model => model.Address) <input type="button" id="Button1" onclick="showAddr(); return false"
-            value="Search" />
-    </p>
-    <p>
-        <div id="googleMap" style="height: 300px;"></div>
-    </p>
-    <p>
-        Latitude: @Html.TextBoxFor(model => model.Latitude)
-    </p>
-    <p>
-        Longitude: @Html.TextBoxFor(model => model.Longitude)
-    </p>
-    <input id="cmdSubmit" type="submit" value="Submit" />   <input id="cmdCancel" value="Cancel" type="button" />
-    <br />
-     <input id="PrintItemUpload" name="PrintItemUpload" type="hidden" />
-}
+
+<div >
+    <div class="row">
+        <div class="col-md-12">
+        <h2>Do your part</h2>
+        <div class="well">
+                @using (Html.BeginForm())
+                {
+                    <p>Heading:  @Html.TextBoxFor(model => model.Heading)</p>
+                    <p>
+                        City: @Html.TextBoxFor(model => model.City)
+                    </p>
+                    <p>
+                        Address: @Html.TextBoxFor(model => model.Address) <input type="button" id="Button1" onclick="showAddr(); return false"
+                            value="Search" />
+                    </p>
+                    <p>
+                        <div id="googleMap" style="height: 300px;"></div>
+                    </p>
+                    <p>
+                        Latitude: @Html.TextBoxFor(model => model.Latitude)
+                    </p>
+                    <p>
+                        Longitude: @Html.TextBoxFor(model => model.Longitude)
+                    </p>
+                    <input id="cmdSubmit" type="submit" value="Submit" />   <input id="cmdCancel" value="Cancel" type="button" />
+                    <br />
+                     <input id="PrintItemUpload" name="PrintItemUpload" type="hidden" />
+                } 
+       
+        </div>
+    </div>     
+
+    </div>
+</div>
 
   @*@Html.Action(storeLocation + "checkout/ShoppingCartFiles/"+ item.Id);
                             @Html.Action("ShoppingCartFiles", "Places", new { id = 1 })   *@                         
                            
-                            <div id="PrintItemUploader">
-                            
-                            </div>
-                            <script type="text/javascript">
-                                $(function () {
-                                    var PrintItemUploader = new qq.FileUploader({
-                                        element: document.getElementById('PrintItemUploader'),
-                                        action: '/Places/UploadFile',
-                                        onComplete: function (id, fileName, responseJSON) {
-                                            $("#PrintItemUpload").val(responseJSON.downloadGuid);
-                                            if (responseJSON.message) {
-                                                alert(responseJSON.message);
-                                                //window.location.href = "@Request.RawUrl";
-                                        }
-                                    },
-                                        //allowedExtensions:'.txt',
-                                        strings: {
-                                            upload: "upload",
-                                            drop: "drop",
-                                            cancel: "cancel",
-                                            failed: "failed"
-                                        }
-                                    });
-                                });
-                        </script>
+ 
                             @*<span class="product-unit-price">@item.UnitPrice</span>*@

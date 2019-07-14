@@ -28,7 +28,6 @@ namespace PFGE.Controllers
             PFGEEntities db = new PFGEEntities();
 
             //Place place = new Place();
-
             //place.Address = "test";
             //place.City = "test";
             //place.Heading = "test";
@@ -37,24 +36,32 @@ namespace PFGE.Controllers
 
             db.Places.Add(place);
             db.SaveChanges();
-            return Redirect("~/home");
+            Response.Cookies.Add(new HttpCookie("place", place.PlaceId.ToString()));
+
+            return RedirectToAction("AddImages");
         }
 
         public ActionResult ViewPlaces()
         {
             PFGEEntities db = new PFGEEntities();
-
             var list = from lst in db.Places select lst;
-
-
             return View(list);
         }
 
+        public ActionResult AddImages()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult UploadFile()
         {
-            string directory = base.Server.MapPath("~/Uploadings/");
+            int placeId = 0;
+
+            placeId = Convert.ToInt32(Request.Cookies["place"].Value.ToString());
+
+            string directory = base.Server.MapPath("~/Uploadings/" + placeId.ToString());
+                       
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
@@ -125,6 +132,14 @@ namespace PFGE.Controllers
             //    IsNew = true
             //};
             //_downloadService.InsertDownload(download);
+
+            PFGEEntities db = new PFGEEntities();
+            PlacePhoto placePhoto = new PlacePhoto();
+            placePhoto.PlaceId = placeId;
+            placePhoto.PhotoName = fileName;
+            //placePhoto.PhotoDescription = "";
+            db.PlacePhotos.Add(placePhoto);
+            db.SaveChanges();
 
             //when returning JSON the mime-type must be set to text/plain
             //otherwise some browsers will pop-up a "Save As" dialog.
