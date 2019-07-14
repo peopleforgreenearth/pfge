@@ -2,4 +2,11 @@ ProposedDB_change.mwb.bak
 MailLog.csv
 PhoneLog.csv
 *.bak
-PFGE\packages\*
+PFGE/packages/*
+PFGE/obj/*
+PFGE/PFGE.Core/obj/*
+PFGE/PFGE.Infrastructure/obj/*
+PFGE/PFGE.Service/obj/*
+PFGE/PFGE.Web/obj/*
+PFGE/PFGE/bin/*
+PFGE/PFGE/obj/*
